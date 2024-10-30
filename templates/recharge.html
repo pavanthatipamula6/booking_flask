@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admincss.css') }}?v=2">
+</head>
+<body>
+
+    <h2>Welcome Admin!</h2>
+    <div style="text-align: right; padding: 10px;">
+        <a href="/logout">Logout</a>
+    </div>
+    <!-- new added  -->
+<!-- <h3>History</h3> -->
+<a style="text-align: right; padding: 10px;" href="/admin">Admin Panel</a>
+
+<!-- <h3>History</h3> -->
+<a style="text-align: right; padding: 10px;" href="/history">View History</a>
+
+    <!-- new added -->
+            <!-- Display flashed messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <p style="color: red;">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+    <h3>Registered Users:</h3>
+    <p>
+    <input type="text"  id="searchInput" onkeyup="searchUsers()" placeholder="Search for users...">
+    </p>
+    <table id="userTable" class="centerTable">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Balance</th>
+                <th>Recharge</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td>
+                        <form action="/recharge/{{ user[0] }}" method="post">
+                            <label for="recharge_amount">Recharge Amount:</label>
+                            <input type="number" id="recharge_amount" name="recharge_amount" value="0">
+                            <input type="submit" value="Recharge">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+    <!-- <script>
+        function searchUsers() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            table = document.getElementById("userTable");
+            tr = table.getElementsByTagName('tr');
+    
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Search in the first column (User Name)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+
+     -->
+    
+
+
+     <script>
+    function searchUsers() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        table = document.getElementById("userTable");
+        tr = table.getElementsByTagName('tr');
+
+        // Check if the input value is empty
+        if (filter === '') {
+            // If the input value is empty, display all table rows
+            for (i = 0; i < tr.length; i++) {
+                tr[i].style.display = "";
+            }
+        } else {
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Search in the first column (User Name)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardcss.css') }}?v=2">
+</head>
+<body>
+    <div style="text-align: right; padding: 10px;">
+        <a href="/logout">Logout</a>
+    </div>
+    <h2>User Dashboard</h2>
+    <!-- Display flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <p style="color: red;">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <!-- Slots -->
+    <h3>Booked Slots</h3>
+    <div class="slots-container">
+        <br>
+        {% for slot_number in range(1, 7) %}
+            <div class="slot {% if slot_number in booked_slots %} booked {% endif %}">
+                {{ slot_number }}
+            </div>
+        {% endfor %}
+    </div>
+    <!-- Book a Slot -->
+
+    <div class="book-slot-container">
+        <h3>Book a Slot</h3> 
+
+
+        <form method="post" action="/dashboard">
+            <div class="balance-container" style="text-align: right;">
+                <p style="color: blue;">Balance: Rs.
+                    {{ balance }} /-
+
+                </p>
+            </div>
+            {{ form.csrf_token }}
+            <div>
+                {{ form.place.label }} {{ form.place }}
+            </div>
+            <div>
+                {{ form.slot_number.label }} {{ form.slot_number }}
+            </div>
+            <div>
+                {{ form.from_date.label }} {{ form.from_date }}
+            </div>
+            <div>
+                {{ form.from_time.label }} {{ form.from_time }}
+            </div>
+            <div>
+                {{ form.to_date.label }} {{ form.to_date }}
+            </div>
+            <div>
+                {{ form.to_time.label }} {{ form.to_time }}
+            </div>
+            <br>
+            <button type="submit">Book Slot</button>
+        </form>
+    </div>
+    <!-- User previous bookings -->
+    <div class="table-container">
+        <h3>Your Previous Bookings</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Sl. No.</th>
+                    <th>Slot No.</th>
+                    <th>Place</th>
+                    <th>From Date</th>
+                    <th>From Time</th>
+                    <th>To Date</th>
+                    <th>To Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ loop.index }}</td> <!-- Sl. No. -->
+                    <td>{{ booking[3] }}</td> <!-- Slot No -->
+                    <td>{{ booking[2] }}</td> <!-- Place -->
+                    <td>{{ booking[4].split()[0] }}</td> <!-- Extracting date from from_datetime -->
+                    <td>{{ booking[4].split()[1] }}</td> <!-- Extracting time from from_datetime -->
+                    <td>{{ booking[5].split()[0] }}</td> <!-- Extracting date from to_datetime -->
+                    <td>{{ booking[5].split()[1] }}</td> <!-- Extracting time from to_datetime -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

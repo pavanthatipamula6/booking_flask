@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admincss.css') }}?v=2">
+</head>
+<body>
+
+    <h2>Welcome Admin!</h2>
+    <div style="text-align: right; padding: 10px;">
+        <a href="/logout">Logout</a>
+    </div>
+    <!-- new added  -->
+<!-- <h3>History</h3> -->
+<a style="text-align: right; padding: 10px;" href="/admin">Admin Panel</a>
+
+<!-- <h3>Recharge</h3> -->
+<a style="text-align: right; padding: 10px;" href="/recharge">Recharge Users</a>
+
+<div style="text-align: right; padding: 10px;">
+    <a href="/download_history">Download History</a>
+
+    <!-- <button onclick="downloadAndRedirect()">Download History</button> -->
+
+</div>
+    <!-- new added -->
+            <!-- Display flashed messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <p style="color: red;">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+
+    <h3>History:</h3>
+    <p>
+    <input type="text" id="searchInput" onkeyup="searchUsers()" placeholder="Search for users...">
+    </p>
+    <!-- <table id="userTable">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history_detail in history_details %}
+                <tr>
+                    <td>{{ history_details[0][1] }}</td>
+                    <td>{{ history_details[0][4] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+
+    <div style="overflow-x: auto;" class="centerTable">
+        <table id="userTable" style="border-collapse: collapse; width: auto;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid black; text-align: center;">User Id</th>
+                    <th style="border: 1px solid black; text-align: center;">User Name</th>
+                    <th style="border: 1px solid black; text-align: center;">Place</th>
+                    <th style="border: 1px solid black; text-align: center;">Slot No</th>
+                    <th style="border: 1px solid black; text-align: center;">Booked From Time</th>
+                    <th style="border: 1px solid black; text-align: center;">Booked To Time</th>
+                    <th style="border: 1px solid black; text-align: center;">In Time</th>
+                    <th style="border: 1px solid black; text-align: center;">Out Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for history_detail in history_details %}
+                <tr>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[0] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[1] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[2] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[3] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[4] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[5] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[6] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ history_detail[7] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        function searchUsers() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            table = document.getElementById("userTable");
+            tr = table.getElementsByTagName('tr');
+    
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1]; // Search in the second column (User Name)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    
+
+
+</body>
+</html>
+
+

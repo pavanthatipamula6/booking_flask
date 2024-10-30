@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+
+</head>
+<body>
+
+    
+
+        <!-- Display flashed messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <p style="color: red;">{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2>SIGN UP</h2>
+
+    <br>
+    <br>
+
+    <form method="post" action="/register" class="centerPage">
+        {{ form.csrf_token }}
+        <div>
+            {{ form.username.label }}  {{ form.username }}
+        </div>
+        <br>
+        <div>
+            {{ form.email.label }} {{ form.email }}
+        </div>
+        <br>
+        <div>
+            {{ form.password.label }} {{ form.password }}
+        </div>
+        <br>
+        <div>
+            {{ form.confirm_password.label }} {{ form.confirm_password }}
+        </div>
+        <br>
+        <div>
+            {{ form.mobile.label }} {{ form.mobile }}
+        </div>
+        <br>
+        <div>
+            {{ form.aadhar.label }} {{ form.aadhar }}
+        </div>
+        <br>
+        <div>
+            {{ form.vehicleNumber.label }} {{ form.vehicleNumber }}
+        </div>
+        <br>
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>

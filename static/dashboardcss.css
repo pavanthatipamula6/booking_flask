@@ -1,0 +1,130 @@
+/* Update your CSS file */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),
+    url("bgg.jpg");
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    color: #007bff;
+}
+
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px; /* Rounded edges */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+.table-container {
+    max-width: 600px; /* Set your desired maximum width */
+    margin: 20px auto;
+}
+
+
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column; /* Adjust the layout to a column */
+    align-items: center; /* Center the content horizontally */
+    max-width: 800px; /* Set your desired maximum width */
+    margin: 20px auto;
+}
+
+
+.slots-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto; /* Push the slots to the right */
+}
+
+.slot {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    border: 1px solid #000; /* Outline for empty slots */
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booked {
+    background-color: red; /* Color for booked slots */
+    border: none; /* No outline for booked slots */
+}
+
+
+

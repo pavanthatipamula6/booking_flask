@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admincss.css') }}?v=2">
+</head>
+<body>
+
+    <h2>Welcome Admin!</h2>
+    <div style="text-align: right; padding: 10px;">
+        <a href="/logout">Logout</a>
+    </div>
+    <!-- new added  -->
+<!-- <h3>History</h3> -->
+<a style="text-align: right; padding: 10px;" href="/history">View History</a>
+
+<!-- <h3>Recharge</h3> -->
+<a style="text-align: right; padding: 10px;" href="/recharge">Recharge Users</a>
+    <!-- new added -->
+            <!-- Display flashed messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <p style="color: red;">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    <h3> Active Sessions : </h3>
+    <ul>
+        <!-- {% for booked_slot_detail in booked_slot_details %}
+            <li>{{ booked_slot_detail[0] }}
+                Test
+            </li>
+        {% endfor %} -->
+
+        <div style="overflow-x: auto;">
+            <table style="border-collapse: collapse; width: 60%;">
+              <thead>
+                <tr>
+                  <th style="border: 1px solid black; text-align: center;">User Id</th>
+                  <th style="border: 1px solid black; text-align: center;">User Name</th>
+                  <th style="border: 1px solid black; text-align: center;">Place</th>
+                  <th style="border: 1px solid black; text-align: center;">Slot No</th>
+                  <th style="border: 1px solid black; text-align: center;">Booked From Time</th>
+                  <th style="border: 1px solid black; text-align: center;">Booked To Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for booked_slot_detail in booked_slot_details %}
+                  <tr>
+                    <td style="border: 1px solid black; text-align: center;">{{ booked_slot_detail[0] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ booked_slot_detail[1] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ booked_slot_detail[2] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ booked_slot_detail[3] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ booked_slot_detail[4] }}</td>
+                    <td style="border: 1px solid black; text-align: center;">{{ booked_slot_detail[5] }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          
+          
+    </ul>
+
+    <!-- <h3>Registered Users:</h3>
+    <ul>
+        {% for user in users %}
+            <li>{{ user[1] }}
+                <a href="/user/{{ user[0] }}">View Bookings</a>
+                 Balance : {{user[4]}}
+                <form action="/recharge/{{ user[0] }}" method="post">
+                    <label for="recharge_amount">Recharge Amount:</label>
+                    <input type="number" id="recharge_amount" name="recharge_amount" value="0">
+                    <input type="submit" value="Recharge">
+                </form>
+            </li>
+        {% endfor %}
+    </ul> -->
+
+<!-- 
+    <h3>Registered Users:</h3>
+    <input type="text" id="searchInput" onkeyup="searchUsers()" placeholder="Search for users...">
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>View Bookings</th>
+                <th>Balance</th>
+                <th>Recharge</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user[1] }}</td>
+                    <td><a href="/user/{{ user[0] }}">View Bookings</a></td>
+                    <td>{{ user[4] }}</td>
+                    <td>
+                        <form action="/recharge/{{ user[0] }}" method="post">
+                            <label for="recharge_amount">Recharge Amount:</label>
+                            <input type="number" id="recharge_amount" name="recharge_amount" value="0">
+                            <input type="submit" value="Recharge">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <script>
+        function searchUsers() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            table = document.getElementById("userTable");
+            tr = table.getElementsByTagName('tr');
+    
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Search in the first column (User Name)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+     -->
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<!-- footer.html -->
+<footer>
+    {% if current_user %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
+</footer>

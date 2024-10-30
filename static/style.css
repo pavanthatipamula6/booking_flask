@@ -1,0 +1,110 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),
+    /* url("bgg.jpg"); */
+}
+
+.centerPage{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+text-align: center;
+}
+
+.login-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    color: #007bff;
+    text-align: center;
+}
+
+p {
+    color: #555;
+    font-size: 16px;
+    text-align: center;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto;
+    border-radius: 8px; /* Rounded edges */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.alert-error {
+    background-color: #ffcccc;
+    color: #cc0000;
+}
+
+.alert-success {
+    background-color: #ccffcc;
+    color: #008000;
+}
+
+/* Added styles for consistent label width */
+form div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form div label {
+    width: 100px; /* Adjust the width as needed */
+}
+
+form div input {
+    flex: 1;
+    margin-left: 10px; /* Adjust the spacing between label and input */
+}
+
+
+
+#eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.password-container {
+    position: relative;
+}
+
+
